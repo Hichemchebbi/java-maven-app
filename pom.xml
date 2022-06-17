@@ -6,24 +6,24 @@
 
     <groupId>com.example</groupId>
     <artifactId>java-maven-app</artifactId>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
 
     <build>
+        <pluginManagement>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.3.5.RELEASE</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
             </plugin>
+        </plugins>
+        </pluginManagement>
 
-            <!-- to handle any Java version mismatch, add the following configuration for maven-compiler-plugin -->
+        <plugins>  
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -33,8 +33,20 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
         </plugins>
+        
+
     </build>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>http://3.73.144.204:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
 
     <dependencies>
         <dependency>
@@ -55,6 +67,12 @@
             <artifactId>logstash-logback-encoder</artifactId>
             <version>6.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>4.6.0</version>
+        </dependency>
+        
     </dependencies>
 
 </project>
